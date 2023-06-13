@@ -8,3 +8,13 @@ pub fn get_dummy_json() -> serde_json::Value {
         parsed
     }
 }
+
+#[test]
+fn test_get_dummy_json() {
+    use serde_json::json;
+    let ret = get_dummy_json();
+    let mut test = serde_json::Map::new();
+    test.insert("age".into(), json!(30));
+    test.insert("name".into(), json!("Alice"));
+    assert_eq!(ret, serde_json::Value::Object(test));
+}
