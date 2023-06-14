@@ -13,7 +13,7 @@ impl Op {
     }
 }
 
-unsafe impl Sync for Op {}
+// unsafe impl Sync for Op {}
 
 #[allow(dead_code)]
 fn is_sync<T: Sync>() {}
@@ -69,10 +69,11 @@ fn is_sync<T: Sync>() {}
 // 对于你的代码，如果你希望在多个线程中共享和修改 Op 实例，你应该使用 Mutex<Op> 或者 RwLock<Op> 来代替 OnceCell<Op>。这样可以保证在任何时候只有一个线程可以修改 Op，而其他线程可以安全地读取 Op 的值。
 #[test]
 fn test_multi_oncecell_example() {
-    use std::cell::OnceCell;
+    // use std::cell::OnceCell;
+    use std::sync::OnceLock;
     use std::thread;
 
-    static mut cell: OnceCell<Op> = OnceCell::new();
+    static mut cell: OnceLock<Op> = OnceLock::new();
     unsafe {
         cell.get_or_init(|| Op::new());
         let option = cell.get();
