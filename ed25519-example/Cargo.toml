@@ -1,0 +1,11 @@
+[package]
+name = "ed25519-example"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.7"
+ed25519-dalek = "1"
+rand_core = { version = "0.5" }
