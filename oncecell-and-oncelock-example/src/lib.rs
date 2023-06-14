@@ -1,4 +1,4 @@
-#![allow(deprecated)]
+pub mod complex_oncecell_example;
 
 // OnceCell 和 OnceLock 都是 Rust 标准库中用于实现懒加载的数据结构，它们能够确保一个变量只被初始化一次。
 
@@ -26,7 +26,7 @@ fn test_once_lock() {
         WINNER.get_or_init(|| "main")
     });
 
-    println!("{winner:?} wins!");
+    println!("{:?} wins!", winner);
     // 在这个例子中，我们使用 OnceLock 来创建一个名为 WINNER 的变量，并在多线程环境下使用它。我们使用 WINNER.set() 方法来设置 WINNER 变量的值，在另一个线程中，我们使用 WINNER.get_or_init() 方法来获取 WINNER 变量的值。get_or_init() 方法接受一个闭包作为参数，该闭包用于初始化变量的值，只有在变量未被初始化时才会执行。
     //
     // 需要注意的是，在使用 OnceLock 的时候需要将变量声明为静态变量。在多线程环境下，多个线程可以同时访问静态变量，因此需要使用 OnceLock 来确保变量只被初始化一次。
@@ -53,43 +53,43 @@ fn test_once_cell() {
     assert!(cell.get().is_some());
 }
 
-#[test]
-#[ignore]
-fn test_once_cell_error() {
-    // use std::cell::OnceCell;
+// #[test]
+// #[ignore]
+// fn test_once_cell_error() {
+// use std::cell::OnceCell;
 
-    // static CACHE: OnceCell<Vec<i32>> = OnceCell::new();
+// static CACHE: OnceCell<Vec<i32>> = OnceCell::new();
 
-    // fn get_data() -> &'static Vec<i32> {
-    //     CACHE.get_or_init(|| {
-    //         let data = vec![1, 2, 3, 4, 5];
-    //         println!("Initializing cache");
-    //         data
-    //     })
-    // }
+// fn get_data() -> &'static Vec<i32> {
+//     CACHE.get_or_init(|| {
+//         let data = vec![1, 2, 3, 4, 5];
+//         println!("Initializing cache");
+//         data
+//     })
+// }
 
-    // let data = get_data();
-    // println!("Data: {:?}", data);
+// let data = get_data();
+// println!("Data: {:?}", data);
 
-    // let data = get_data();
-    // println!("Data: {:?}", data);
+// let data = get_data();
+// println!("Data: {:?}", data);
 
-    // error[E0277]: `OnceCell<Vec<i32>>` cannot be shared between threads safely
-    //   --> oncecell-and-oncelock-example/src/lib.rs:63:19
-    //    |
-    // 63 |     static CACHE: OnceCell<Vec<i32>> = OnceCell::new();
-    //    |                   ^^^^^^^^^^^^^^^^^^ `OnceCell<Vec<i32>>` cannot be shared between threads safely
-    //    |
-    //    = help: the trait `Sync` is not implemented for `OnceCell<Vec<i32>>`
-    //    = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::OnceLock` instead
-    //    = note: shared static variables must have a type that implements `Sync`
+// error[E0277]: `OnceCell<Vec<i32>>` cannot be shared between threads safely
+//   --> oncecell-and-oncelock-example/src/lib.rs:63:19
+//    |
+// 63 |     static CACHE: OnceCell<Vec<i32>> = OnceCell::new();
+//    |                   ^^^^^^^^^^^^^^^^^^ `OnceCell<Vec<i32>>` cannot be shared between threads safely
+//    |
+//    = help: the trait `Sync` is not implemented for `OnceCell<Vec<i32>>`
+//    = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::OnceLock` instead
+//    = note: shared static variables must have a type that implements `Sync`
 
-    // For more information about this error, try `rustc --explain E0277`.
-    // warning: `oncecell-and-oncelock-example` (lib test) generated 4 warnings
-    // error: could not compile `oncecell-and-oncelock-example` (lib test) due to previous error; 4 warnings emitted
+// For more information about this error, try `rustc --explain E0277`.
+// warning: `oncecell-and-oncelock-example` (lib test) generated 4 warnings
+// error: could not compile `oncecell-and-oncelock-example` (lib test) due to previous error; 4 warnings emitted
 
-    //OnceCell 是用于单线程环境下的懒加载数据结构，因此它在多线程环境下是不安全的，会导致数据竞争问题
-}
+//OnceCell 是用于单线程环境下的懒加载数据结构，因此它在多线程环境下是不安全的，会导致数据竞争问题
+// }
 
 // OnceCell 是用于单线程环境下的懒加载数据结构，因此它在多线程环境下是不安全的，会导致数据竞争问题。
 // 如果需要在多线程环境下使用懒加载数据结构，可以使用 std::sync::Once 或其他线程安全的数据结构。
