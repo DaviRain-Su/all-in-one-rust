@@ -18,3 +18,8 @@ Wiki中整理了一些关于Rust相关遇到的问题。
 
 - [OnceCell 与 OnceLock 的对比的例子](./oncecell-and-oncelock-example)
 - [什么是Sparse by default crates.io的例子](./sparse-by-default-cratesio)
+
+
+## 在写Rust图书
+
+- [Head First Rust](https://github.com/DaviRain-Su/head-first-rust)
