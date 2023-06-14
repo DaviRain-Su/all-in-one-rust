@@ -1,5 +1,7 @@
 #![allow(deprecated)]
 
+pub mod complex_oncecell_example;
+
 // OnceCell 和 OnceLock 都是 Rust 标准库中用于实现懒加载的数据结构，它们能够确保一个变量只被初始化一次。
 
 // OnceCell 是用于单线程环境下的懒加载数据结构。它可以用来存储某个值，并在需要时进行初始化，但是只能在单线程环境下使用。在多线程环境下，使用 OnceCell 会导致数据竞争问题，因此不适用于多线程环境。如果需要在多线程环境下使用懒加载数据结构，可以使用 std::sync::Once 或其他线程安全的数据结构。
