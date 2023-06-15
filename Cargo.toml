@@ -3,4 +3,5 @@ members = [
     "sparse-by-default-cratesio",
     "oncecell-and-oncelock-example",
     "ed25519-example",
+    "llm-chain-example",
 ]
