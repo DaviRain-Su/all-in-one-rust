@@ -1,3 +1,6 @@
+#![allow(deprecated)]
+#![allow(non_upper_case_globals)]
+
 pub mod complex_oncecell_example;
 
 // OnceCell 和 OnceLock 都是 Rust 标准库中用于实现懒加载的数据结构，它们能够确保一个变量只被初始化一次。
