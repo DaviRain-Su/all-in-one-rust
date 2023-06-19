@@ -68,12 +68,77 @@ fn is_sync<T: Sync>() {}
 //
 // 对于你的代码，如果你希望在多个线程中共享和修改 Op 实例，你应该使用 Mutex<Op> 或者 RwLock<Op> 来代替 OnceCell<Op>。这样可以保证在任何时候只有一个线程可以修改 Op，而其他线程可以安全地读取 Op 的值。
 #[test]
-fn test_multi_oncecell_example() {
-    // use std::cell::OnceCell;
+fn test_multi_oncelock_example() {
     use std::sync::OnceLock;
     use std::thread;
 
-    static mut cell: OnceLock<Op> = OnceLock::new();
+    static mut CELL: OnceLock<Op> = OnceLock::new();
+
+    unsafe {
+        CELL.get_or_init(|| Op::new());
+        let option = CELL.get();
+        println!("{:?}", option);
+        let mut handler_result = vec![];
+        //  将thead数，数值太小不会出错。改为300 报错了
+        for idx in 0..300 {
+            let handler = thread::spawn(move || {
+                let option1 = CELL.get_mut().unwrap();
+                println!("{:?}", CELL.get().unwrap());
+                option1.text = format!("world. {}", idx);
+                println!("{:?}", CELL.get().unwrap());
+            });
+
+            handler_result.push(handler);
+        }
+
+        for handler in handler_result {
+            let _ = handler.join();
+        }
+
+        let option = CELL.get();
+        println!("{:?}", option);
+    }
+}
+
+#[test]
+fn test_multi_oncecell_with_mutex_example() {
+    use std::cell::OnceCell;
+    use std::sync::Mutex;
+    use std::thread;
+
+    static mut cell: OnceCell<Mutex<Op>> = OnceCell::new();
+    unsafe {
+        cell.get_or_init(|| Mutex::new(Op::new()));
+        let option = cell.get();
+        println!("{:?}", option);
+        let mut handler_result = vec![];
+        //  将thead数，数值太小不会出错。改为300 报错了
+        for idx in 0..10000 {
+            let handler = thread::spawn(move || {
+                let option1 = cell.get_mut().unwrap();
+                println!("{:?}", cell.get().unwrap());
+                option1.lock().unwrap().text = format!("world. {}", idx);
+                println!("{:?}", cell.get().unwrap());
+            });
+
+            handler_result.push(handler);
+        }
+
+        for handler in handler_result {
+            handler.join().unwrap();
+        }
+
+        let option = cell.get();
+        println!("{:?}", option);
+    }
+}
+
+#[test]
+fn test_multi_oncelcell_example_maybe_failed() {
+    use std::cell::OnceCell;
+    use std::thread;
+
+    static mut cell: OnceCell<Op> = OnceCell::new();
     unsafe {
         cell.get_or_init(|| Op::new());
         let option = cell.get();
