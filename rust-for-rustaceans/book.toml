@@ -1,0 +1,6 @@
+[book]
+authors = ["Davirain"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Rust for Rustaceans"

@@ -1,8 +1,8 @@
 use async_openai::Client;
 use std::error::Error;
 
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn Error>> {
+#[tokio::test]
+async fn test_model_list() -> Result<(), Box<dyn Error>> {
     let client = Client::new();
 
     let model_list = client.models().list().await?;
