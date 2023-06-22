@@ -5,4 +5,5 @@ members = [
     "ed25519-example",
     "deep-learning-rs", # just for deeep learning
     "llm-chain-example",
+    "rust-for-rustaceans",
 ]
