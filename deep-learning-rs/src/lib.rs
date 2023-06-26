@@ -17,32 +17,31 @@ pub fn or(x1: f64, x2: f64) -> bool {
     p.is_active()
 }
 
-
 #[cfg(test)]
 mod test {
     use super::*;
 
     #[test]
     fn test_and() {
-        assert_eq!(and(1.0, 1.0), true);
-        assert_eq!(and(0.0, 1.0), false);
-        assert_eq!(and(1.0, 0.0), false);
-        assert_eq!(and(0.0, 0.0), false);
+        assert!(and(1.0, 1.0));
+        assert!(!and(0.0, 1.0));
+        assert!(!and(1.0, 0.0));
+        assert!(!and(0.0, 0.0));
     }
 
     #[test]
     fn test_xor() {
-        assert_eq!(nand(1.0, 1.0), false);
-        assert_eq!(nand(0.0, 1.0), true);
-        assert_eq!(nand(1.0, 0.0), true);
-        assert_eq!(nand(0.0, 0.0), true);
+        assert!(!nand(1.0, 1.0));
+        assert!(nand(0.0, 1.0));
+        assert!(nand(1.0, 0.0));
+        assert!(nand(0.0, 0.0));
     }
 
     #[test]
     fn test_or() {
-        assert_eq!(or(1.0, 1.0), true);
-        assert_eq!(or(0.0, 1.0), true);
-        assert_eq!(or(1.0, 0.0), true);
-        assert_eq!(or(0.0, 0.0), false);
+        assert!(or(1.0, 1.0));
+        assert!(or(0.0, 1.0));
+        assert!(or(1.0, 0.0));
+        assert!(!or(0.0, 0.0));
     }
 }

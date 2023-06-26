@@ -120,7 +120,7 @@ fn test_cache() {
 
 #[test]
 fn test_noalias() {
-    let mut x = 1;
+    let x = 1;
     // 可变引用和不可变引用互斥
     // noalias(&x, &mut x);
 

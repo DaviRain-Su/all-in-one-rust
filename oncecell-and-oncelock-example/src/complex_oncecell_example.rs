@@ -75,7 +75,7 @@ fn test_multi_oncelock_example() {
     static mut CELL: OnceLock<Op> = OnceLock::new();
 
     unsafe {
-        CELL.get_or_init(|| Op::new());
+        CELL.get_or_init(Op::new);
         let option = CELL.get();
         println!("{:?}", option);
         let mut handler_result = vec![];
@@ -117,7 +117,7 @@ fn test_multi_oncecell_with_mutex_example() {
             let handler = thread::spawn(move || {
                 let option1 = cell.get_mut().unwrap();
                 println!("{:?}", cell.get().unwrap());
-                option1.lock().unwrap().text = format!("world. {}", idx);
+                option1.get_mut().unwrap().text = format!("world. {}", idx);
                 println!("{:?}", cell.get().unwrap());
             });
 
@@ -140,7 +140,7 @@ fn test_multi_oncelcell_example_maybe_failed() {
 
     static mut cell: OnceCell<Op> = OnceCell::new();
     unsafe {
-        cell.get_or_init(|| Op::new());
+        cell.get_or_init(Op::new);
         let option = cell.get();
         println!("{:?}", option);
         let mut handler_result = vec![];
