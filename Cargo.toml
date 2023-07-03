@@ -7,4 +7,6 @@ members = [
     "llm-chain-example",
     "rust-for-rustaceans",
     "nom-example",
+    "example-env",
 ]
+resolver = "2"

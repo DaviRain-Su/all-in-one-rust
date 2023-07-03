@@ -1,0 +1,3 @@
+enabled = true
+src_chain_id = "ibc-0"
+dst_chain_id = "ibc-1"
