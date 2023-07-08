@@ -6,8 +6,6 @@ members = [
     "deep-learning-rs", # just for deeep learning
     "llm-chain-example",
     "rust-for-rustaceans",
-    "nom-example",
-    "example-env",
-    "example-error-handler",
+    "examples/*",
 ]
 resolver = "2"
