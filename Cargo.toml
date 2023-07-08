@@ -8,5 +8,6 @@ members = [
     "rust-for-rustaceans",
     "nom-example",
     "example-env",
+    "example-error-handler",
 ]
 resolver = "2"
