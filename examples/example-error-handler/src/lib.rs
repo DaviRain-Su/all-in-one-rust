@@ -27,6 +27,13 @@ pub fn process_value(map: &HashMap<String, i32>, key: &str) -> Option<i32> {
     Some(value + 1)
 }
 
+pub fn process_value_result(map: &HashMap<String, i32>, key: &str) -> Result<i32, String> {
+    let value = map.get(key).ok_or::<String>("empty error".into())?;
+
+    // 如果找到了键，我们就对值进行某种操作，例如加一
+    Ok(value + 1)
+}
+
 /// 下面是一个使用 `Resul`t 和 `?` 操作符的例子。假设我们有一个函数，它尝试将一个字符串解析为整数。
 ///
 /// 在上述例子中，`parse` 方法尝试将字符串 `s` 解析为一个整数。如果解析成功，`parse` 返回 `Ok(number)`，然后 ? 操作符解包 `Ok` 并将 `number` 传递给下一行代码。如果解析失败，`parse` 返回 `Err`，然后 `?` 操作符立即从函数返回该错误。
@@ -35,19 +42,31 @@ pub fn parse_integer(s: &str) -> Result<i32, std::num::ParseIntError> {
     Ok(number)
 }
 
-#[test]
-fn test_process_value() {
-    let mut map = HashMap::new();
-    map.insert("one".to_string(), 1);
-    map.insert("two".to_string(), 2);
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    assert_eq!(process_value(&map, "one"), Some(2));
-    assert_eq!(process_value(&map, "two"), Some(3));
-    assert_eq!(process_value(&map, "three"), None);
-}
+    #[test]
+    fn test_process_value() {
+        let mut map = HashMap::new();
+        map.insert("one".to_string(), 1);
+        map.insert("two".to_string(), 2);
 
-#[test]
-fn test_parse_integer() {
-    assert_eq!(parse_integer("10"), Ok(10));
-    assert!(parse_integer("a").is_err());
+        assert_eq!(process_value(&map, "one"), Some(2));
+        assert_eq!(process_value(&map, "two"), Some(3));
+        assert_eq!(process_value(&map, "three"), None);
+    }
+
+    #[test]
+    fn test_process_value_result() {
+        let map = HashMap::new();
+        assert!(process_value_result(&map, "three").is_err());
+        println!("error : {:?}", process_value_result(&map, "three"));
+    }
+
+    #[test]
+    fn test_parse_integer() {
+        assert_eq!(parse_integer("10"), Ok(10));
+        assert!(parse_integer("a").is_err());
+    }
 }

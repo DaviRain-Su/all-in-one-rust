@@ -9,3 +9,10 @@ members = [
     "examples/*",
 ]
 resolver = "2"
+
+
+[workspace.dependencies]
+example-error-handler = { version = "0.1", path = "./examples/example-error-handler"}
+nom-example = {  version = "0.1", path = "./examples/example-nom" }
+
+[path.crates-io]

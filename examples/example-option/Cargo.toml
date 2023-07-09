@@ -1,0 +1,10 @@
+[package]
+name = "example-option"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+example-error-handler = { version = "0.1", workspace = true }
+nom-example = { version = "0.1", workspace = true }
