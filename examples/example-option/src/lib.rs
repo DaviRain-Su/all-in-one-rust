@@ -1,3 +1,5 @@
+#![allow(unused_imports)]
+
 use example_error_handler::*;
 
 #[derive(Debug, Clone, Copy)]

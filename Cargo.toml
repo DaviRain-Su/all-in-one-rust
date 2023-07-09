@@ -14,5 +14,7 @@ resolver = "2"
 [workspace.dependencies]
 example-error-handler = { version = "0.1", path = "./examples/example-error-handler"}
 nom-example = {  version = "0.1", path = "./examples/example-nom" }
-
-[path.crates-io]
+deep-learning-rs = { version = "0.1", path = "./deep-learning-rs" }
+ed25519-example = { version = "0.1", path = "./ed25519-example" }
+oncecell-and-oncelock-example = { version = "0.1", path = "./oncecell-and-oncelock-example" }
+sparse-by-default-cratesio = { version = "0.1", path = "./sparse-by-default-cratesio" }
