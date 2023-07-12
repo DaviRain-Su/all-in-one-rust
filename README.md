@@ -12,6 +12,9 @@ Wiki中整理了一些关于Rust相关遇到的问题。
 - [翻译 - 关于Rust的上下文泛型编程（Context Generic Programming](https://github.com/DaviRain-Su/example-context-generic)
 - [Monkey language interpreter Rust language implementation](https://github.com/DaviRain-Su/monkey-interpter)
 - [自己总结的关于区块链的资料](https://github.com/DaviRain-Su/blockchain-tourtials)
+- [RPC之tarpc](./rpc/README.md)
+- [OnceCell和OnceLock的介绍](./oncecell-and-oncelock-example/README.md)
+- [有关环境变量在rust中的](./examples/example-env/README.md)
 
 
 ## Example Code
@@ -19,6 +22,11 @@ Wiki中整理了一些关于Rust相关遇到的问题。
 - [OnceCell 与 OnceLock 的对比的例子](./oncecell-and-oncelock-example)
 - [什么是Sparse by default crates.io的例子](./sparse-by-default-cratesio)
 
+## 翻译的书
+
+- Rust for Rustaceans
+    - [Chapter1: Fundation](./rust-for-rustaceans/src/chapter_1.md)
+    - [Chapter 2: Types](./rust-for-rustaceans/src/chapter_2.md)
 
 ## 在写Rust图书
 
