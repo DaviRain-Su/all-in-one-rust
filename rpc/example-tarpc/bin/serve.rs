@@ -12,7 +12,7 @@ use rand::{
     thread_rng,
 };
 use std::{
-    net::{IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr},
+    net::{IpAddr, Ipv6Addr, SocketAddr},
     time::Duration,
 };
 use tarpc::{
