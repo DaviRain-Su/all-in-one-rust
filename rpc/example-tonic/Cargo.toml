@@ -13,3 +13,11 @@ tonic = "0.9.2"
 
 [build-dependencies]
 tonic-build = "0.9.2"
+
+[[bin]]
+name = "tonic-server"
+path = "./bin/server.rs"
+
+[[bin]]
+name = "tonic-client"
+path = "./bin/client.rs"

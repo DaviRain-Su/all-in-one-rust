@@ -7,6 +7,24 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0"
+clap = { version = "3.0.0-rc.9", features = ["derive"] }
+log = "0.4"
+serde = { version = "1", features = ["derive"] }
 futures = "0.3"
-tarpc = { version = "0.31", features = ["tokio1"] }
-tokio = { version = "1.0", features = ["full"] }
+opentelemetry = { version = "0.17", features = ["rt-tokio"] }
+opentelemetry-jaeger = { version = "0.16", features = ["rt-tokio"] }
+rand = "0.8"
+tarpc = { version = "0.33", features = ["full"] }
+tokio = { version = "1", features = ["macros", "net", "rt-multi-thread"] }
+tracing = { version = "0.1" }
+tracing-opentelemetry = "0.17"
+tracing-subscriber = {version = "0.3", features = ["env-filter"]}
+
+
+[[bin]]
+name = "tarpc-serve"
+path = "./bin/serve.rs"
+
+[[bin]]
+name = "tarpc-client"
+path = "./bin/client.rs"

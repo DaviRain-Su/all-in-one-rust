@@ -1,10 +1,6 @@
-use helloworld::greeter_client::GreeterClient;
-use helloworld::HelloRequest;
+use example_tonic::helloworld::greeter_client::GreeterClient;
+use example_tonic::helloworld::HelloRequest;
 use tonic::transport::Channel;
-
-pub mod helloworld {
-    tonic::include_proto!("helloworld"); // The string specified here must match the proto package name
-}
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

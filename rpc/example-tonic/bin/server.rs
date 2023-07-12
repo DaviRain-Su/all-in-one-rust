@@ -1,11 +1,7 @@
 use tonic::{transport::Server, Request, Response, Status};
 
-use helloworld::greeter_server::{Greeter, GreeterServer};
-use helloworld::{HelloReply, HelloRequest};
-
-pub mod helloworld {
-    tonic::include_proto!("helloworld"); // The string specified here must match the proto package name
-}
+use example_tonic::helloworld::greeter_server::{Greeter, GreeterServer};
+use example_tonic::helloworld::{HelloReply, HelloRequest};
 
 // Implementation of the Greeter service trait generated from the Protobuf definitions.
 pub struct MyGreeter;
@@ -18,8 +14,8 @@ impl Greeter for MyGreeter {
     ) -> Result<Response<HelloReply>, Status> {
         // Return an instance of type HelloReply
         println!("Got a request: {:?}", request);
-        let reply = helloworld::HelloReply {
-            message: format!("Hello {}!", request.into_inner().name).into(), // Create reply
+        let reply = example_tonic::helloworld::HelloReply {
+            message: format!("Hello {}!", request.into_inner().name), // Create reply
         };
         Ok(Response::new(reply)) // Send back our formatted greeting
     }

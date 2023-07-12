@@ -8,7 +8,6 @@ members = [
     "rust-for-rustaceans",
     "examples/*",
     "rpc/*",
-    "rpc/example-tonic/example-tonic-client",
 ]
 resolver = "2"
 
